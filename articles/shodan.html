@@ -114,6 +114,7 @@
                         <a href="#defend">5. Using Shodan to defend</a>
                         <a href="#ethics">6. Ethics &amp; legality</a>
                         <a href="#glossary">7. Mini glossary</a>
+                        <a href="#my-notes">8. 📝 My New Notes</a>
                     </nav>
                 </aside>
 
@@ -141,6 +142,7 @@
                         "the search engine for the Internet of Things".
                     </p>
 
+                    <h3>Google vs Shodan</h3>
                     <figure class="figure reveal">
                         <div class="figure__box">
                             <span class="figure__label">Google</span>
@@ -153,7 +155,15 @@
                         </div>
                     </figure>
 
+                    <h3>Why this matters to me</h3>
+                    <p>
+                        As a student, Shodan is the fastest way I've found to answer the question
+                        "what does the internet actually look like from the outside?" — it turns
+                        abstract networking concepts into something I can search and see.
+                    </p>
+
                     <h2 id="how">How does it work?</h2>
+                    <h3>The three steps it repeats</h3>
                     <p>Under the hood, Shodan does three simple things over and over:</p>
                     <ol class="steps">
                         <li><strong>Probe</strong> — it sends a request to a huge range of IP addresses on common ports (80, 443, 22, 21, 23, 3389, 8080…).</li>
@@ -161,6 +171,7 @@
                         <li><strong>Index</strong> — that banner is stored and made searchable, together with the IP, country, ISP and open ports.</li>
                     </ol>
 
+                    <h3>What a banner looks like</h3>
                     <p>A banner you might see from an SSH server looks like this:</p>
                     <pre class="code"><code><span class="tok-o">$</span> nc 203.0.113.10 22
 <span class="tok-s">SSH-2.0-OpenSSH_7.4</span></code></pre>
@@ -173,6 +184,7 @@
                     <h2 id="filters">Search filters worth knowing</h2>
                     <p>Shodan searches are just keywords plus filters. These are the ones I use most:</p>
 
+                    <h3>Filter cheat-sheet</h3>
                     <div class="table-wrap reveal">
                         <table class="table">
                             <thead>
@@ -192,6 +204,7 @@
                         </table>
                     </div>
 
+                    <h3>Combining filters</h3>
                     <p>You can combine them into very targeted queries:</p>
                     <pre class="code"><code><span class="tok-c"># Find nginx web servers in Tunisia</span>
 product:nginx country:TN
@@ -203,6 +216,7 @@ product:MongoDB port:27017
 "webcamXP" has_screenshot:true</code></pre>
 
                     <h2 id="reading">Reading a result</h2>
+                    <h3>Anatomy of a result card</h3>
                     <p>A typical Shodan result card gives you:</p>
                     <ul class="checklist">
                         <li><strong>IP address + hostname</strong> — where the device lives.</li>
@@ -213,6 +227,7 @@ product:MongoDB port:27017
                         <li><strong>Last seen</strong> — how fresh the data is.</li>
                     </ul>
 
+                    <h3>Freshness check</h3>
                     <div class="callout callout--tip reveal">
                         <span class="callout__icon">💡</span>
                         <div>
@@ -227,6 +242,8 @@ product:MongoDB port:27017
                         This is the part I care about most as a student: Shodan is a fantastic
                         <strong>mirror</strong>. It shows your systems exactly how a stranger sees them.
                     </p>
+
+                    <h3>My 5-step self-check</h3>
                     <ol class="steps">
                         <li>
                             <strong>Look yourself up.</strong> Search your own public IP
@@ -255,6 +272,7 @@ sudo ufw status verbose</code></pre>
                         </li>
                     </ol>
 
+                    <h3>Mistakes to avoid</h3>
                     <div class="callout callout--warn reveal">
                         <span class="callout__icon">⚠️</span>
                         <div>
@@ -270,6 +288,8 @@ sudo ufw status verbose</code></pre>
                         Searching Shodan is legal — it only shows publicly reachable information.
                         What you do <em>next</em> is what matters:
                     </p>
+
+                    <h3>Green light / red light</h3>
                     <ul class="checklist">
                         <li>✅ Searching and learning — fine, and encouraged.</li>
                         <li>✅ Checking your own or your company's exposure — fine, with permission.</li>
@@ -282,6 +302,7 @@ sudo ufw status verbose</code></pre>
                     </p>
 
                     <h2 id="glossary">Mini glossary</h2>
+                    <h3>Terms I keep mixing up</h3>
                     <dl class="glossary">
                         <div>
                             <dt>Port</dt>
@@ -309,6 +330,66 @@ sudo ufw status verbose</code></pre>
                             Look yourself up first, then lock the doors.
                         </div>
                     </div>
+
+                    <!-- ================= MY NEW NOTES ================= -->
+                    <h2 id="my-notes">📝 My New Notes</h2>
+                    <p>
+                        This is my living notebook. Every time I learn something new about Shodan,
+                        I paste a new block at the bottom of this section — no need to restructure
+                        the article above.
+                    </p>
+
+                    <h3>How to add a note</h3>
+                    <ol class="steps">
+                        <li>Copy the template below.</li>
+                        <li>Paste it <strong>just above</strong> the
+                            <code>&lt;!-- END OF MY NOTES --&gt;</code> comment (or right after the last note).</li>
+                        <li>Replace the title, the explanation and the example with what I learned.</li>
+                        <li>Save the file, then commit &amp; push to GitHub Pages.</li>
+                    </ol>
+
+                    <h3>Copy-paste template</h3>
+                    <pre class="code"><code>&lt;h2&gt;My New Topic&lt;/h2&gt;
+&lt;p&gt;Write my explanation here.&lt;/p&gt;
+
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;p&gt;Write an example here.&lt;/p&gt;</code></pre>
+
+                    <div class="callout callout--note reveal">
+                        <span class="callout__icon">📌</span>
+                        <div>
+                            <strong>Where to paste:</strong> scroll to the
+                            <code>⬇️ PASTE YOUR FUTURE NOTES HERE</code> comment below and drop your
+                            new note right there, as plain <code>&lt;h2&gt;</code> / <code>&lt;h3&gt;</code>
+                            / <code>&lt;p&gt;</code> tags — no wrapper needed, this block already lives
+                            inside the article. Add an <code>id</code> to the <code>&lt;h2&gt;</code> and a
+                            matching link in the "On this page" menu if I want it to appear in the
+                            table of contents.
+                        </div>
+                    </div>
+
+                    <!-- ============================================================
+                         ⬇️ PASTE YOUR FUTURE NOTES HERE ⬇️
+                         Each note = one heading block copied from the template above
+                         (<h2> + <p>, then <h3> + <p>), pasted BELOW this comment.
+                         Newest note goes at the very bottom, just above the
+                         "END OF MY NOTES" marker.
+                         ============================================================ -->
+
+                    <h2>My New Topic <span class="note-date">(starter example)</span></h2>
+                    <p>
+                        Write my explanation here — for example: today I learned that
+                        <code>has_vulnerability:true</code> filters results down to hosts with
+                        at least one known CVE, which is the fastest way to see the riskiest
+                        devices first.
+                    </p>
+
+                    <h3>Example</h3>
+                    <p>Write an example here — for example:</p>
+                    <pre class="code"><code><span class="tok-c"># Riskiest hosts seen in my country</span>
+has_vulnerability:true country:TN</code></pre>
+
+                    <!-- ⬆️ END OF MY NOTES — paste each new note ABOVE this line ⬆️ -->
 
                     <!-- Article footer -->
                     <div class="share">

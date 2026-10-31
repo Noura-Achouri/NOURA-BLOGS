@@ -109,7 +109,7 @@
     var tocLinks = document.querySelectorAll(".toc__list a");
 
     if ("IntersectionObserver" in window && tocLinks.length) {
-        var headings = document.querySelectorAll(".prose h2[id]");
+        var headings = document.querySelectorAll(".prose h2[id], .prose h3[id]");
         var tocSpy = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
