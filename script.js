@@ -51,10 +51,21 @@
         if (navToggle) navToggle.setAttribute("aria-expanded", "false");
     }
 
-    /* ---------- Sticky nav shadow ---------- */
+    /* ---------- Sticky nav shadow + reading progress ---------- */
     var nav = document.getElementById("nav");
+    var bar = document.getElementById("progressBar");
+
+    function readProgress() {
+        if (!bar) return;
+        var doc = document.documentElement;
+        var scrollable = doc.scrollHeight - window.innerHeight;
+        var ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+        bar.style.width = Math.min(100, Math.max(0, ratio * 100)) + "%";
+    }
+
     function onScroll() {
         if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 12);
+        readProgress();
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -92,6 +103,23 @@
         }, { threshold: 0.4 });
 
         sections.forEach(function (s) { spy.observe(s); });
+    }
+
+    /* ---------- Table of contents highlighting (article pages) ---------- */
+    var tocLinks = document.querySelectorAll(".toc__list a");
+
+    if ("IntersectionObserver" in window && tocLinks.length) {
+        var headings = document.querySelectorAll(".prose h2[id]");
+        var tocSpy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                tocLinks.forEach(function (a) {
+                    a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id);
+                });
+            });
+        }, { rootMargin: "-100px 0px -60% 0px", threshold: 0 });
+
+        headings.forEach(function (h) { tocSpy.observe(h); });
     }
 
     /* ---------- Subscribe form (front-end only) ---------- */

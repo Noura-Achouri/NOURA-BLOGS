@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shodan explained for beginners: what the 'search engine for the internet' is, how it works, the search filters you should know, and how to use it to defend your own systems.">
+    <title>Shodan: The Search Engine for Every Connected Device ✦ NOURA'S BLOGS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Decorative background -->
+    <div class="bg-decor" aria-hidden="true">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+        <span class="grid-lines"></span>
+    </div>
+
+    <a class="skip-link" href="#article">Skip to article</a>
+
+    <!-- Reading progress -->
+    <div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="nav" id="nav">
+        <div class="container nav__inner">
+            <a class="logo" href="../index.html#top">
+                <span class="logo__mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 17l6-6-6-6"/><path d="M12 19h8"/>
+                    </svg>
+                </span>
+                <span class="logo__text">Noura<span class="logo__accent">.dev</span></span>
+            </a>
+
+            <nav class="nav__links" aria-label="Main navigation">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#articles">Articles</a>
+                <a href="../index.html#topics">Topics</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="4.2"/>
+                        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="article">
+        <!-- ================= ARTICLE HEADER ================= -->
+        <section class="article-hero">
+            <div class="container">
+                <a class="back-link" href="../index.html#articles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M11 18l-6-6 6-6"/>
+                    </svg>
+                    Back to articles
+                </a>
+
+                <div class="article-hero__tags reveal">
+                    <span class="tag tag--security">Cybersecurity</span>
+                    <span class="tag tag--linux">Linux</span>
+                    <span class="article-meta">8 min read</span>
+                    <span class="article-meta">Oct 2026</span>
+                </div>
+
+                <h1 class="article-hero__title reveal reveal--delay">
+                    Shodan: The Search Engine for
+                    <span class="gradient-text">Every Connected Device</span>
+                </h1>
+
+                <p class="article-hero__lead reveal reveal--delay-2">
+                    Google indexes web pages. Shodan indexes <em>devices</em> — webcams, routers,
+                    servers, databases, traffic lights. Here's how it works, what you can search for,
+                    and (most importantly) how to use it to protect your own stuff.
+                </p>
+
+                <div class="author reveal reveal--delay-3">
+                    <span class="author__avatar" aria-hidden="true">N</span>
+                    <div class="author__info">
+                        <span class="author__name">Noura</span>
+                        <span class="author__role">Software Engineering student · learning in public</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ARTICLE BODY ================= -->
+        <section class="section section--article">
+            <div class="container article-layout">
+                <!-- Table of contents -->
+                <aside class="toc reveal" aria-label="Table of contents">
+                    <p class="toc__title">On this page</p>
+                    <nav class="toc__list">
+                        <a href="#what">1. What is Shodan?</a>
+                        <a href="#how">2. How does it work?</a>
+                        <a href="#filters">3. Search filters worth knowing</a>
+                        <a href="#reading">4. Reading a result</a>
+                        <a href="#defend">5. Using Shodan to defend</a>
+                        <a href="#ethics">6. Ethics &amp; legality</a>
+                        <a href="#glossary">7. Mini glossary</a>
+                    </nav>
+                </aside>
+
+                <article class="prose">
+                    <div class="callout callout--note reveal">
+                        <span class="callout__icon">🛡️</span>
+                        <div>
+                            <strong>This is a defensive-security article.</strong>
+                            Everything here is about understanding exposure and fixing it.
+                            Never scan, access or test a system you don't own or don't have
+                            written permission to test.
+                        </div>
+                    </div>
+
+                    <h2 id="what">What is Shodan?</h2>
+                    <p>
+                        Shodan is a search engine, but instead of crawling websites it crawls the
+                        <strong>internet itself</strong>. It continuously scans public IP addresses,
+                        connects to open ports, and records what answers back — a web server, an SSH
+                        login prompt, a camera stream, a database asking for a password.
+                    </p>
+                    <p>
+                        Think of it like this: Google shows you the <em>content</em> of the web.
+                        Shodan shows you the <em>machines</em> behind it. Its tagline is literally
+                        "the search engine for the Internet of Things".
+                    </p>
+
+                    <figure class="figure reveal">
+                        <div class="figure__box">
+                            <span class="figure__label">Google</span>
+                            <p>indexes → web pages (HTML, images, documents)</p>
+                        </div>
+                        <div class="figure__arrow" aria-hidden="true">vs</div>
+                        <div class="figure__box figure__box--accent">
+                            <span class="figure__label">Shodan</span>
+                            <p>indexes → devices &amp; services (ports, banners, headers)</p>
+                        </div>
+                    </figure>
+
+                    <h2 id="how">How does it work?</h2>
+                    <p>Under the hood, Shodan does three simple things over and over:</p>
+                    <ol class="steps">
+                        <li><strong>Probe</strong> — it sends a request to a huge range of IP addresses on common ports (80, 443, 22, 21, 23, 3389, 8080…).</li>
+                        <li><strong>Listen</strong> — whatever the device replies with is called a <em>banner</em>: a small greeting that usually reveals the software name and version.</li>
+                        <li><strong>Index</strong> — that banner is stored and made searchable, together with the IP, country, ISP and open ports.</li>
+                    </ol>
+
+                    <p>A banner you might see from an SSH server looks like this:</p>
+                    <pre class="code"><code><span class="tok-o">$</span> nc 203.0.113.10 22
+<span class="tok-s">SSH-2.0-OpenSSH_7.4</span></code></pre>
+                    <p>
+                        That single line tells you the host is running OpenSSH 7.4 — and a quick
+                        search tells you which known vulnerabilities affect that version. That's the
+                        whole idea: <strong>exposure is discoverable</strong>.
+                    </p>
+
+                    <h2 id="filters">Search filters worth knowing</h2>
+                    <p>Shodan searches are just keywords plus filters. These are the ones I use most:</p>
+
+                    <div class="table-wrap reveal">
+                        <table class="table">
+                            <thead>
+                                <tr><th>Filter</th><th>What it does</th><th>Example</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>country:</code></td><td>Limit results to a country code</td><td><code>country:TN</code></td></tr>
+                                <tr><td><code>city:</code></td><td>Limit to a city</td><td><code>city:"Tunis"</code></td></tr>
+                                <tr><td><code>port:</code></td><td>Only devices with that port open</td><td><code>port:22</code></td></tr>
+                                <tr><td><code>net:</code></td><td>Search inside an IP range (CIDR)</td><td><code>net:203.0.113.0/24</code></td></tr>
+                                <tr><td><code>org:</code></td><td>Devices owned by an organisation</td><td><code>org:"Example ISP"</code></td></tr>
+                                <tr><td><code>product:</code></td><td>A specific software product</td><td><code>product:nginx</code></td></tr>
+                                <tr><td><code>os:</code></td><td>Operating system</td><td><code>os:"Linux"</code></td></tr>
+                                <tr><td><code>has_screenshot:</code></td><td>Only results with a screenshot</td><td><code>has_screenshot:true</code></td></tr>
+                                <tr><td><code>before/after:</code></td><td>Filter by date first seen</td><td><code>after:01/09/2026</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>You can combine them into very targeted queries:</p>
+                    <pre class="code"><code><span class="tok-c"># Find nginx web servers in Tunisia</span>
+product:nginx country:TN
+
+<span class="tok-c"># Find MongoDB instances with no password prompt</span>
+product:MongoDB port:27017
+
+<span class="tok-c"># Find exposed webcams</span>
+"webcamXP" has_screenshot:true</code></pre>
+
+                    <h2 id="reading">Reading a result</h2>
+                    <p>A typical Shodan result card gives you:</p>
+                    <ul class="checklist">
+                        <li><strong>IP address + hostname</strong> — where the device lives.</li>
+                        <li><strong>Open ports</strong> — which doors are unlocked.</li>
+                        <li><strong>Banner / HTTP headers</strong> — what software is answering.</li>
+                        <li><strong>Location &amp; ISP</strong> — country, city, organisation.</li>
+                        <li><strong>Vulnerabilities (CVEs)</strong> — known issues linked to that version.</li>
+                        <li><strong>Last seen</strong> — how fresh the data is.</li>
+                    </ul>
+
+                    <div class="callout callout--tip reveal">
+                        <span class="callout__icon">💡</span>
+                        <div>
+                            The most useful field is often <strong>Last seen</strong>. A result from
+                            two years ago may no longer exist — always verify before drawing
+                            conclusions about a host.
+                        </div>
+                    </div>
+
+                    <h2 id="defend">Using Shodan to defend</h2>
+                    <p>
+                        This is the part I care about most as a student: Shodan is a fantastic
+                        <strong>mirror</strong>. It shows your systems exactly how a stranger sees them.
+                    </p>
+                    <ol class="steps">
+                        <li>
+                            <strong>Look yourself up.</strong> Search your own public IP
+                            (<code>net:your.ip.here/32</code>) and check what ports are visible.
+                        </li>
+                        <li>
+                            <strong>Close what shouldn't be open.</strong> Use a firewall —
+                            on Linux, <code>ufw</code> makes this painless:
+                            <pre class="code code--inline"><code>sudo ufw default deny incoming
+sudo ufw allow 22/tcp
+sudo ufw enable
+sudo ufw status verbose</code></pre>
+                        </li>
+                        <li>
+                            <strong>Fix default credentials.</strong> Cameras, routers and databases
+                            are usually exposed because nobody changed <code>admin/admin</code>.
+                        </li>
+                        <li>
+                            <strong>Update the software.</strong> Old versions of OpenSSH, nginx or
+                            MongoDB appear on Shodan precisely because they carry known CVEs.
+                        </li>
+                        <li>
+                            <strong>Monitor continuously.</strong> Shodan can alert you when a new
+                            device or open port appears in your organisation's IP range — that's an
+                            early warning system.
+                        </li>
+                    </ol>
+
+                    <div class="callout callout--warn reveal">
+                        <span class="callout__icon">⚠️</span>
+                        <div>
+                            <strong>Common beginner mistake:</strong> thinking "nobody will find my
+                            device, it's only on port 8080". Automated scanners don't get tired —
+                            an exposed service on the public internet is usually discovered within
+                            minutes.
+                        </div>
+                    </div>
+
+                    <h2 id="ethics">Ethics &amp; legality</h2>
+                    <p>
+                        Searching Shodan is legal — it only shows publicly reachable information.
+                        What you do <em>next</em> is what matters:
+                    </p>
+                    <ul class="checklist">
+                        <li>✅ Searching and learning — fine, and encouraged.</li>
+                        <li>✅ Checking your own or your company's exposure — fine, with permission.</li>
+                        <li>❌ Connecting to, logging into, or testing a system you don't own — not fine.</li>
+                        <li>❌ Using it to build target lists for attacks — illegal.</li>
+                    </ul>
+                    <p>
+                        A good rule: if you wouldn't do it to a stranger's front door in real life,
+                        don't do it to their server.
+                    </p>
+
+                    <h2 id="glossary">Mini glossary</h2>
+                    <dl class="glossary">
+                        <div>
+                            <dt>Port</dt>
+                            <dd>A numbered "door" on a machine where a service listens (22 = SSH, 80 = HTTP, 443 = HTTPS).</dd>
+                        </div>
+                        <div>
+                            <dt>Banner</dt>
+                            <dd>The greeting a service sends when you connect — often reveals software and version.</dd>
+                        </div>
+                        <div>
+                            <dt>CVE</dt>
+                            <dd>A public ID for a known security vulnerability in specific software.</dd>
+                        </div>
+                        <div>
+                            <dt>Attack surface</dt>
+                            <dd>Everything reachable from the outside: open ports, services, APIs, exposed credentials.</dd>
+                        </div>
+                    </dl>
+
+                    <div class="callout callout--note reveal">
+                        <span class="callout__icon">📌</span>
+                        <div>
+                            <strong>Takeaway:</strong> Shodan isn't a hacking tool — it's a mirror.
+                            The moment you put something on the internet, someone can see it.
+                            Look yourself up first, then lock the doors.
+                        </div>
+                    </div>
+
+                    <!-- Article footer -->
+                    <div class="share">
+                        <span class="share__label">Found this useful?</span>
+                        <a class="btn btn--ghost" href="../index.html#contact">Tell me 💌</a>
+                        <a class="btn btn--primary" href="../index.html#articles">
+                            More articles
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="logo__text">Noura<span class="logo__accent">.dev</span></span>
+                <p>Learning in public — programming, Linux, AI &amp; security.</p>
+            </div>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#articles">Articles</a>
+                <a href="../index.html#topics">Topics</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+        </div>
+        <div class="container footer__bottom">
+            <p>&copy; <span id="year">2026</span> NOURA'S BLOGS. Built with HTML, CSS &amp; a lot of coffee.</p>
+            <p class="footer__heart">Made with ❤️ by Noura</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
