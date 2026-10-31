@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Noura's Dev Blog — a software engineering student's journey through programming, Linux, AI and cybersecurity.">
-    <title>NOURA'S BLOGS ✦ Learn · Build · Share</title>
+    <meta name="description" content="Noura's cybersecurity blog — a software engineering student learning security in public: Shodan, Linux, networking and defensive security notes.">
+    <title>NOURA'S BLOGS ✦ Cybersecurity · Linux · Learning in public</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,9 +74,10 @@
                     </h1>
 
                     <p class="hero__lead">
-                        Hi! I'm <strong>Noura</strong>, a Software Engineering student.
-                        I'm learning programming, Linux, AI, and cybersecurity —
-                        and this blog is where I share my learning journey, one commit at a time.
+                        Hi! I'm <strong>Noura</strong>, a Software Engineering student
+                        focusing on <strong>cybersecurity</strong> — how systems get exposed,
+                        how they get attacked, and how to defend them.
+                        This blog is where I document what I actually learn, one note at a time.
                     </p>
 
                     <div class="hero__cta">
@@ -94,7 +95,7 @@
                             <dt>Topics</dt><dd>5+</dd>
                         </div>
                         <div class="stat">
-                            <dt>Articles</dt><dd id="statArticles">3</dd>
+                            <dt>Articles</dt><dd id="statArticles">1</dd>
                         </div>
                         <div class="stat">
                             <dt>Coffee cups</dt><dd>&#8734;</dd>
@@ -113,17 +114,17 @@
                         <pre class="card-window__body"><code><span class="tok-c"># whoami</span>
 <span class="tok-k">name</span>:    Noura
 <span class="tok-k">role</span>:    <span class="tok-s">"Software Engineering Student"</span>
-<span class="tok-k">stack</span>:   [ <span class="tok-s">"Python"</span>, <span class="tok-s">"Linux"</span>, <span class="tok-s">"AI"</span>,
-           <span class="tok-s">"Security"</span>, <span class="tok-s">"Django"</span> ]
+<span class="tok-k">stack</span>:   [ <span class="tok-s">"Security"</span>, <span class="tok-s">"Linux"</span>, <span class="tok-s">"Shodan"</span>,
+           <span class="tok-s">"Networking"</span>, <span class="tok-s">"Python"</span> ]
 <span class="tok-k">status</span>:  <span class="tok-b">learning_in_public</span>
 
 <span class="tok-c">$ cat journal.txt</span>
 <span class="tok-o">&gt;</span> building, breaking, documenting.</code></pre>
                     </div>
 
-                    <div class="float-chip float-chip--1">🐧 Linux</div>
-                    <div class="float-chip float-chip--2">🧠 AI</div>
-                    <div class="float-chip float-chip--3">🔐 Security</div>
+                    <div class="float-chip float-chip--1">🔐 Security</div>
+                    <div class="float-chip float-chip--2">🔍 Shodan</div>
+                    <div class="float-chip float-chip--3">🐧 Linux</div>
                 </div>
             </div>
 
@@ -137,10 +138,11 @@
             <div class="container">
                 <header class="section__head reveal">
                     <span class="eyebrow">01 — About</span>
-                    <h2 class="section__title">A student, a terminal, and a lot of curiosity</h2>
+                    <h2 class="section__title">A student, a terminal, and a growing security obsession</h2>
                     <p class="section__sub">
                         I believe the best way to learn something is to build it, break it, then write about it.
-                        Here's what I'm currently exploring.
+                        My main focus is <strong>cybersecurity</strong> — understanding exposure and locking
+                        systems down. Here's what I'm currently exploring.
                     </p>
                 </header>
 
@@ -173,22 +175,24 @@
         <section class="section section--tinted" id="articles">
             <div class="container">
                 <header class="section__head reveal">
-                    <span class="eyebrow">02 — Writing</span>
-                    <h2 class="section__title">My Latest Articles</h2>
-                    <p class="section__sub">Notes from the trenches of learning — short, practical and beginner friendly.</p>
+                    <span class="eyebrow">02 — Security notes</span>
+                    <h2 class="section__title">My Cybersecurity Articles</h2>
+                    <p class="section__sub">Only things I actually wrote and learned — starting with Shodan, and growing as I study.</p>
                 </header>
 
                 <div class="posts">
-                    <a class="post post--featured reveal" href="articles/shodan.html">
+                    <a class="post post--featured reveal" href="articles/CyberSecurity.html">
                         <div class="post__top">
                             <span class="tag tag--security">Cybersecurity</span>
                             <span class="post__meta">8 min read</span>
                         </div>
-                        <h3 class="post__title">Shodan: The Search Engine for Every Connected Device</h3>
+                        <h3 class="post__title">what does shoudan means</h3>
                         <p class="post__excerpt">
-                            Google indexes web pages — Shodan indexes <em>devices</em>.
-                            What it is, how it works, the filters worth knowing, and how to use it
-                            to defend your own systems.
+                           shoudan is a seaching engine very usefull in cybersecurity and to understand it ill use google example to explain it 
+                           as you know google is also seaching engine used to search for websites smething shoudan does instead of searching for websites shoudan
+                           search for the devices that are connected to the internet (such as cameras,servers,laptops ...)
+                           beside that shoudan can get the IP address,location,software,services,ports... but shoudan can only find the devices that are publicly 
+                           acessible 
                         </p>
                         <footer class="post__foot">
                             <span class="post__date">Oct 2026 · New</span>
@@ -197,24 +201,6 @@
                             </span>
                         </footer>
                     </a>
-
-                    <article class="post reveal reveal--delay">
-                        <div class="post__top">
-                            <span class="tag tag--linux">Linux</span>
-                            <span class="post__meta">5 min read</span>
-                        </div>
-                        <h3 class="post__title"><a href="#">What Is a Server?</a></h3>
-                        <p class="post__excerpt">
-                            Servers explained without the jargon: what they are, what they do all day,
-                            and why your laptop can be one too.
-                        </p>
-                        <footer class="post__foot">
-                            <span class="post__date">Oct 2026</span>
-                            <span class="post__link">Read article
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </span>
-                        </footer>
-                    </article>
                 </div>
             </div>
         </section>
@@ -227,9 +213,10 @@
                     <h2 class="section__title">What I write about</h2>
                 </header>
                 <div class="chips reveal">
+                    <span class="chip">🔐 Cybersecurity</span>
+                    <span class="chip">🔍 Shodan</span>
                     <span class="chip">🐧 Linux</span>
                     <span class="chip">🧠 AI</span>
-                    <span class="chip">🔐 Cybersecurity</span>
                     <span class="chip">中文 Chinese</span>
                     <span class="chip">🌐 Web Development</span>
                 </div>
@@ -242,7 +229,7 @@
                 <div class="cta reveal">
                     <h2 class="cta__title">Let's learn together 💌</h2>
                     <p class="cta__sub">
-                        I'm always up for talking about code, Linux, or a good bug story.
+                        I'm always up for talking about cybersecurity, Linux, or a good bug story.
                         Drop me a message — I read everything.
                     </p>
                     <form class="cta__form" id="subscribeForm" novalidate>
@@ -260,7 +247,7 @@
         <div class="container footer__inner">
             <div class="footer__brand">
                 <span class="logo__text">Noura<span class="logo__accent">.dev</span></span>
-                <p>Learning in public — programming, Linux, AI &amp; security.</p>
+                <p>Learning in public — cybersecurity, Linux &amp; AI.</p>
             </div>
             <nav class="footer__links" aria-label="Footer navigation">
                 <a href="#about">About</a>
@@ -270,7 +257,7 @@
             </nav>
         </div>
         <div class="container footer__bottom">
-            <p>&copy; <span id="year">2026</span> Noura's Dev Blog. Built with HTML, CSS &amp; a lot of coffee.</p>
+            <p>&copy; <span id="year">2026</span> NOURA'S BLOGS. Built with HTML, CSS &amp; a lot of coffee.</p>
             <p class="footer__heart">Made with ❤️ by Noura 乔诺</p>
         </div>
     </footer>

@@ -569,6 +569,9 @@ ul { margin: 0; padding: 0; list-style: none; }
     transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 .post:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+/* Keep a single card from stretching across the whole grid */
+.posts .post:only-child { max-width: 480px; }
+
 .post--featured {
     position: relative;
     cursor: pointer;
