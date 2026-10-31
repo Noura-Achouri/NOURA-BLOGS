@@ -1,26 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noura's Dev Blog</title>
+    <meta name="description" content="Noura's Dev Blog — a software engineering student's journey through programming, Linux, AI and cybersecurity.">
+    <title>NOURA'S BLOGS ✦ Learn · Build · Share</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to Noura's Dev Blog!</h1>
+    <!-- Decorative background -->
+    <div class="bg-decor" aria-hidden="true">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+        <span class="grid-lines"></span>
+    </div>
 
-    <p>Hi! I'm Noura, a Software Engineering student.</p>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <p>
-        I'm learning programming, Linux, AI, and cybersecurity.
-        This blog is where I share my learning journey.
-    </p>
+    <!-- ================= NAVBAR ================= -->
+    <header class="nav" id="nav">
+        <div class="container nav__inner">
+            <a class="logo" href="#top">
+                <span class="logo__mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 17l6-6-6-6"/><path d="M12 19h8"/>
+                    </svg>
+                </span>
+                <span class="logo__text">Noura<span class="logo__accent">.dev</span></span>
+            </a>
 
-    <h2>My Latest Articles</h2>
+            <nav class="nav__links" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#articles">Articles</a>
+                <a href="#topics">Topics</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-    <ul>
-        <li>What Is a Server?</li>
-        <li>Understanding Linux Permissions</li>
-        <li>Python for Beginners</li>
-    </ul>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="4.2"/>
+                        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="top">
+            <div class="container hero__inner">
+                <div class="hero__copy reveal">
+                    <span class="badge">
+                        <span class="badge__dot"></span>
+                        Currently learning &amp; building
+                    </span>
+
+                    <h1 class="hero__title">
+                        Welcome to
+                        <span class="gradient-text">NOURA'S BLOGS</span>
+                    </h1>
+
+                    <p class="hero__lead">
+                        Hi! I'm <strong>Noura</strong>, a Software Engineering student.
+                        I'm learning programming, Linux, AI, and cybersecurity —
+                        and this blog is where I share my learning journey, one commit at a time.
+                    </p>
+
+                    <div class="hero__cta">
+                        <a class="btn btn--primary" href="#articles">
+                            Read my articles
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                            </svg>
+                        </a>
+                        <a class="btn btn--ghost" href="#contact">Say hello</a>
+                    </div>
+
+                    <dl class="stats">
+                        <div class="stat">
+                            <dt>Topics</dt><dd>5+</dd>
+                        </div>
+                        <div class="stat">
+                            <dt>Articles</dt><dd id="statArticles">3</dd>
+                        </div>
+                        <div class="stat">
+                            <dt>Coffee cups</dt><dd>&#8734;</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="hero__card reveal reveal--delay">
+                    <div class="card-window">
+                        <div class="card-window__bar">
+                            <span class="dot dot--red"></span>
+                            <span class="dot dot--yellow"></span>
+                            <span class="dot dot--green"></span>
+                            <span class="card-window__title">~/noura/README.md</span>
+                        </div>
+                        <pre class="card-window__body"><code><span class="tok-c"># whoami</span>
+<span class="tok-k">name</span>:    Noura
+<span class="tok-k">role</span>:    <span class="tok-s">"Software Engineering Student"</span>
+<span class="tok-k">stack</span>:   [ <span class="tok-s">"Python"</span>, <span class="tok-s">"Linux"</span>, <span class="tok-s">"AI"</span>,
+           <span class="tok-s">"Security"</span>, <span class="tok-s">"Django"</span> ]
+<span class="tok-k">status</span>:  <span class="tok-b">learning_in_public</span>
+
+<span class="tok-c">$ cat journal.txt</span>
+<span class="tok-o">&gt;</span> building, breaking, documenting.</code></pre>
+                    </div>
+
+                    <div class="float-chip float-chip--1">🐧 Linux</div>
+                    <div class="float-chip float-chip--2">🧠 AI</div>
+                    <div class="float-chip float-chip--3">🔐 Security</div>
+                </div>
+            </div>
+
+            <a class="scroll-hint" href="#about" aria-label="Scroll down">
+                <span class="scroll-hint__mouse"></span>
+            </a>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about">
+            <div class="container">
+                <header class="section__head reveal">
+                    <span class="eyebrow">01 — About</span>
+                    <h2 class="section__title">A student, a terminal, and a lot of curiosity</h2>
+                    <p class="section__sub">
+                        I believe the best way to learn something is to build it, break it, then write about it.
+                        Here's what I'm currently exploring.
+                    </p>
+                </header>
+
+                <div class="about__grid">
+                    <article class="glass-card reveal">
+                        <span class="glass-card__icon">💻</span>
+                        <h3>Programming</h3>
+                        <p>From Python scripts to full Django apps — writing code that actually solves problems.</p>
+                    </article>
+                    <article class="glass-card reveal reveal--delay">
+                        <span class="glass-card__icon">🐧</span>
+                        <h3>Linux</h3>
+                        <p>Getting comfortable in the shell, permissions, services and the magic of the command line.</p>
+                    </article>
+                    <article class="glass-card reveal reveal--delay-2">
+                        <span class="glass-card__icon">🧠</span>
+                        <h3>Artificial Intelligence</h3>
+                        <p>Exploring models, data and automation — and how AI can make developers faster.</p>
+                    </article>
+                    <article class="glass-card reveal reveal--delay-3">
+                        <span class="glass-card__icon">🔐</span>
+                        <h3>Cybersecurity</h3>
+                        <p>Learning how systems get attacked so I can learn how to defend them properly.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ARTICLES ================= -->
+        <section class="section section--tinted" id="articles">
+            <div class="container">
+                <header class="section__head reveal">
+                    <span class="eyebrow">02 — Writing</span>
+                    <h2 class="section__title">My Latest Articles</h2>
+                    <p class="section__sub">Notes from the trenches of learning — short, practical and beginner friendly.</p>
+                </header>
+
+                <div class="posts">
+                    <article class="post reveal">
+                        <div class="post__top">
+                            <span class="tag tag--linux">Linux</span>
+                            <span class="post__meta">5 min read</span>
+                        </div>
+                        <h3 class="post__title"><a href="#">What Is a Server?</a></h3>
+                        <p class="post__excerpt">
+                            Servers explained without the jargon: what they are, what they do all day,
+                            and why your laptop can be one too.
+                        </p>
+                        <footer class="post__foot">
+                            <span class="post__date">Oct 2026</span>
+                            <span class="post__link">Read article
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </span>
+                        </footer>
+                    </article>
+
+                    <article class="post reveal reveal--delay">
+                        <div class="post__top">
+                            <span class="tag tag--linux">Linux</span>
+                            <span class="post__meta">7 min read</span>
+                        </div>
+                        <h3 class="post__title"><a href="#">Understanding Linux Permissions</a></h3>
+                        <p class="post__excerpt">
+                            <code>chmod</code>, <code>chown</code> and the mysterious <code>drwxr-xr-x</code> —
+                            decoded once and for all, with examples you can try right now.
+                        </p>
+                        <footer class="post__foot">
+                            <span class="post__date">Oct 2026</span>
+                            <span class="post__link">Read article
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </span>
+                        </footer>
+                    </article>
+
+                    <article class="post reveal reveal--delay-2">
+                        <div class="post__top">
+                            <span class="tag tag--python">Python</span>
+                            <span class="post__meta">6 min read</span>
+                        </div>
+                        <h3 class="post__title"><a href="#">Python for Beginners</a></h3>
+                        <p class="post__excerpt">
+                            Your first steps in Python: variables, loops and functions — written by someone
+                            who was a beginner not so long ago.
+                        </p>
+                        <footer class="post__foot">
+                            <span class="post__date">Sep 2026</span>
+                            <span class="post__link">Read article
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </span>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TOPICS ================= -->
+        <section class="section" id="topics">
+            <div class="container">
+                <header class="section__head reveal">
+                    <span class="eyebrow">03 — Topics</span>
+                    <h2 class="section__title">What I write about</h2>
+                </header>
+                <div class="chips reveal">
+                    <span class="chip">🐧 Linux</span>
+                    <span class="chip">🧠 AI</span>
+                    <span class="chip">🔐 Cybersecurity</span>
+                    <span class="chip">中文 Chinese</span>
+                    <span class="chip">🌐 Web Development</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="section section--tinted" id="contact">
+            <div class="container">
+                <div class="cta reveal">
+                    <h2 class="cta__title">Let's learn together 💌</h2>
+                    <p class="cta__sub">
+                        I'm always up for talking about code, Linux, or a good bug story.
+                        Drop me a message — I read everything.
+                    </p>
+                    <form class="cta__form" id="subscribeForm" novalidate>
+                        <input type="email" id="emailInput" placeholder="your@email.com" aria-label="Your email" required>
+                        <button class="btn btn--primary" type="submit">Subscribe</button>
+                    </form>
+                    <p class="cta__note" id="formNote" role="status"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="logo__text">Noura<span class="logo__accent">.dev</span></span>
+                <p>Learning in public — programming, Linux, AI &amp; security.</p>
+            </div>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="#about">About</a>
+                <a href="#articles">Articles</a>
+                <a href="#topics">Topics</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+        <div class="container footer__bottom">
+            <p>&copy; <span id="year">2026</span> Noura's Dev Blog. Built with HTML, CSS &amp; a lot of coffee.</p>
+            <p class="footer__heart">Made with ❤️ by Noura</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
